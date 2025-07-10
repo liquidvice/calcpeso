@@ -58,6 +58,12 @@
         transform: rotate(0deg) scale(1);
       }
     }
+
+    #mensaje {
+      font-size: 20px;
+      margin-top: 15px;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -68,7 +74,9 @@
   <div class="imagen-container">
     <img id="imagen" src="" alt="Resultado de peso" />
   </div>
+  <p id="mensaje"></p>
 
+  <!-- Sonidos -->
   <audio id="audioLigero" src="https://www.soundjay.com/button/beep-01a.mp3"></audio>
   <audio id="audioNormal" src="https://www.soundjay.com/button/beep-07.mp3"></audio>
   <audio id="audioPesado" src="https://www.soundjay.com/button/beep-10.mp3"></audio>
@@ -77,6 +85,7 @@
     function mostrarResultado() {
       const peso = parseFloat(document.getElementById("peso").value);
       const imagen = document.getElementById("imagen");
+      const mensaje = document.getElementById("mensaje");
       const audioLigero = document.getElementById("audioLigero");
       const audioNormal = document.getElementById("audioNormal");
       const audioPesado = document.getElementById("audioPesado");
@@ -86,30 +95,31 @@
         return;
       }
 
-      // Quitar cualquier animación previa
       imagen.classList.remove("animacion-pesada");
-
-     if (peso < 50) {
-  imagen.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZPB8MbeThHhvOzxrpI-shiXLzGR0MQ5Wqxg&s";
-  imagen.style.display = "block";
-  audioLigero.play();
-} else if (peso === 80) {
-  imagen.src = "https://i.pinimg.com/236x/36/6c/37/366c377565974e8f37c35c3807ba7172.jpg";
-  imagen.style.display = "block";
-  audioNormal.play();
-} else {
-  imagen.src = "https://i.pinimg.com/736x/2f/53/ee/2f53ee8e2306346e25495be3016c7269.jpg";
-  imagen.style.display = "block";
-  audioPesado.play();
-
-  // Reiniciar animación correctamente
-  imagen.classList.remove("animacion-pesada");
-  void imagen.offsetWidth; // ← reinicia la animación
-  imagen.classList.add("animacion-pesada");
-}
-
       imagen.style.display = "block";
+      mensaje.textContent = "";
+
+      if (peso < 50) {
+        imagen.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZPB8MbeThHhvOzxrpI-shiXLzGR0MQ5Wqxg&s";
+        audioLigero.play();
+        mensaje.textContent = "¡Estás livianito!";
+        mensaje.style.color = "#2b9af3"; // Azul claro
+      } else if (peso <= 80) {
+        imagen.src = "https://i.pinimg.com/236x/36/6c/37/366c377565974e8f37c35c3807ba7172.jpg";
+        audioNormal.play();
+        mensaje.textContent = "¡Estás en un peso ideal!";
+        mensaje.style.color = "#28a745"; // Verde
+      } else {
+        imagen.src = "https://i.pinimg.com/736x/2f/53/ee/2f53ee8e2306346e25495be3016c7269.jpg";
+        audioPesado.play();
+        mensaje.textContent = "¡Cuidado con la balanza!";
+        mensaje.style.color = "#d9534f"; // Rojo
+
+        void imagen.offsetWidth;
+        imagen.classList.add("animacion-pesada");
+      }
     }
   </script>
 </body>
 </html>
+
