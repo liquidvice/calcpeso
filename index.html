@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculador de Peso con Sonido</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    input {
+      padding: 10px;
+      font-size: 18px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      margin-left: 10px;
+    }
+    img {
+      margin-top: 20px;
+      width: 200px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Ingresa tu peso (kg)</h1>
+  <input type="number" id="peso" placeholder="Ej: 65" />
+  <button onclick="mostrarResultado()">Ver resultado</button>
+
+  <div>
+    <img id="imagen" src="" alt="Resultado de peso" />
+  </div>
+
+  <audio id="audioLigero" src="https://www.soundjay.com/button/beep-01a.mp3"></audio>
+  <audio id="audioNormal" src="https://www.soundjay.com/button/beep-07.mp3"></audio>
+  <audio id="audioPesado" src="https://www.soundjay.com/button/beep-10.mp3"></audio>
+
+  <script>
+    function mostrarResultado() {
+      const peso = parseFloat(document.getElementById("peso").value);
+      const imagen = document.getElementById("imagen");
+      const audioLigero = document.getElementById("audioLigero");
+      const audioNormal = document.getElementById("audioNormal");
+      const audioPesado = document.getElementById("audioPesado");
+
+      if (isNaN(peso)) {
+        alert("Por favor ingresa un número válido.");
+        return;
+      }
+
+      if (peso < 50) {
+        imagen.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZPB8MbeThHhvOzxrpI-shiXLzGR0MQ5Wqxg&s";
+        audioLigero.play();
+      } else if (peso <= 80) {
+        imagen.src = "https://i.pinimg.com/236x/36/6c/37/366c377565974e8f37c35c3807ba7172.jpg";
+        audioNormal.play();
+      } else {
+        imagen.src = "https://i.pinimg.com/736x/2f/53/ee/2f53ee8e2306346e25495be3016c7269.jpg";
+        audioPesado.play();
+      }
+
+      imagen.style.display = "block";
+    }
+  </script>
+</body>
+</html>
