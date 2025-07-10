@@ -75,6 +75,18 @@
   <audio id="audioPesado" src="oye-gelda.mp3"></audio>
 
   <script>
+    function detenerAudios() {
+      const audios = [
+        document.getElementById("audioLigero"),
+        document.getElementById("audioNormal"),
+        document.getElementById("audioPesado")
+      ];
+      audios.forEach(audio => {
+        audio.pause();
+        audio.currentTime = 0;
+      });
+    }
+
     function mostrarResultado() {
       const peso = parseFloat(document.getElementById("peso").value);
       const imagen = document.getElementById("imagen");
@@ -87,6 +99,8 @@
         alert("Por favor ingresa un número válido.");
         return;
       }
+
+      detenerAudios();
 
       imagen.classList.remove("animacion-pesada");
       imagen.style.display = "block";
@@ -109,7 +123,7 @@
         mensaje.style.color = "#e67e22"; // Naranja
       } else {
         imagen.src = "https://i.pinimg.com/736x/2f/53/ee/2f53ee8e2306346e25495be3016c7269.jpg";
-        audioPesado.play(); // Aquí se reproduce el nuevo sonido
+        audioPesado.play(); // Sonido especial
         mensaje.textContent = "¡Cuidado con la balanza!";
         mensaje.style.color = "#d9534f"; // Rojo
 
