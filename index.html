@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculadora de peso</title>
   <style>
     body {
@@ -18,25 +19,44 @@
 
     h1 {
       margin-top: 40px;
+      font-size: 6vw; /* se adapta al ancho de pantalla */
+      text-align: center;
     }
 
     input, button {
-      padding: 10px;
-      font-size: 18px;
+      padding: 12px;
+      font-size: 5vw;
       margin: 10px;
+      width: 80%;
+      max-width: 300px;
+      box-sizing: border-box;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
     }
 
     .imagen-container {
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 300px;
+      height: auto;
       width: 100%;
+      padding: 10px;
     }
 
     img {
-      max-width: 80%;
-      max-height: 100%;
+      max-width: 90%;
+      height: auto;
       display: none;
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
@@ -53,9 +73,10 @@
     }
 
     #mensaje {
-      font-size: 20px;
+      font-size: 5vw;
       margin-top: 15px;
       font-weight: bold;
+      text-align: center;
     }
   </style>
 </head>
@@ -123,7 +144,7 @@
         mensaje.style.color = "#e67e22"; // Naranja
       } else {
         imagen.src = "https://i.pinimg.com/736x/2f/53/ee/2f53ee8e2306346e25495be3016c7269.jpg";
-        audioPesado.play(); // Sonido especial
+        audioPesado.play();
         mensaje.textContent = "¡Cuidado con la balanza!";
         mensaje.style.color = "#d9534f"; // Rojo
 
