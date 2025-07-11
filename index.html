@@ -92,7 +92,8 @@
 
   <!-- Sonidos -->
   <audio id="audioLigero" src="https://www.soundjay.com/button/beep-01a.mp3"></audio>
-  <audio id="audioNormal" src="https://www.soundjay.com/button/beep-07.mp3"></audio>
+  <audio id="audioNormal" src="https://www.soundjay.com/button/beep-01a.mp3"></audio>
+  <audio id="audioSospechoso" src="sus-sound-effect.mp3"></audio>
   <audio id="audioPesado" src="oye-gelda.mp3"></audio>
 
   <script>
@@ -100,6 +101,7 @@
       const audios = [
         document.getElementById("audioLigero"),
         document.getElementById("audioNormal"),
+        document.getElementById("audioSospechoso"),
         document.getElementById("audioPesado")
       ];
       audios.forEach(audio => {
@@ -114,6 +116,7 @@
       const mensaje = document.getElementById("mensaje");
       const audioLigero = document.getElementById("audioLigero");
       const audioNormal = document.getElementById("audioNormal");
+      const audioSospechoso = document.getElementById("audioSospechoso");
       const audioPesado = document.getElementById("audioPesado");
 
       if (isNaN(peso)) {
@@ -139,7 +142,7 @@
         mensaje.style.color = "#28a745"; // Verde
       } else if (peso >= 70 && peso <= 80) {
         imagen.src = "https://i.pinimg.com/236x/36/6c/37/366c377565974e8f37c35c3807ba7172.jpg";
-        audioNormal.play();
+        audioSospechoso.play();
         mensaje.textContent = "Sospechoso";
         mensaje.style.color = "#e67e22"; // Naranja
       } else {
